@@ -1,4 +1,3 @@
-// backend/server.js
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
@@ -28,7 +27,6 @@ let participantes = [
     { id: 16, nome: "Henrique",   amigo: "Másio",      senha: "303" }
 ];
 
-
 app.get('/api/participantes', (req, res) => {
     const listaPublica = participantes.map(p => ({ id: p.id, nome: p.nome }));
     res.json(listaPublica);
@@ -48,8 +46,10 @@ app.post('/api/revelar', (req, res) => {
         return res.status(404).json({ erro: "Pessoa não encontrada." });
     }
 
-    
-    if (pessoa.senha !== senha) {
+    const senhaDigitada = String(senha).trim();
+    const senhaCorreta = String(pessoa.senha).trim();
+
+    if (senhaDigitada !== senhaCorreta) {
         return res.status(401).json({ erro: "Senha incorreta! Tente novamente." });
     }
 
