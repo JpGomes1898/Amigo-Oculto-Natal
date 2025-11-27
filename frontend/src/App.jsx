@@ -1,4 +1,3 @@
-// client/src/App.jsx
 import React, { useState, useEffect } from 'react';
 import Snowfall from 'react-snowfall';
 import Countdown from 'react-countdown';
@@ -15,10 +14,18 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [erro, setErro] = useState('');
 
- 
-const baseURL = window.location.hostname.includes('localhost') 
-  ? 'http://localhost:3001' 
-  : 'https://amigo-oculto-okwo.onrender.com'; 
+  const baseURL = window.location.hostname.includes('localhost') 
+    ? 'http://localhost:3001' 
+    : 'https://amigo-oculto-okwo.onrender.com'; 
+
+  useEffect(() => {
+    axios.get(`${baseURL}/api/participantes`) 
+      .then(res => setParticipantes(res.data))
+      .catch(err => {
+        console.error(err);
+        setErro("Erro ao conectar com servidor.");
+      });
+  }, []);
 
   const handleRevelar = async () => {
     if (!selecionado) return alert("Selecione seu nome!");
@@ -28,8 +35,7 @@ const baseURL = window.location.hostname.includes('localhost')
     setErro('');
     
     try {
-      
-      const response = await axios.post('http://localhost:3001/api/revelar', {
+      const response = await axios.post(`${baseURL}/api/revelar`, {
         idSolicitante: selecionado,
         senha: senha
       });
@@ -41,7 +47,7 @@ const baseURL = window.location.hostname.includes('localhost')
       } else if (error.response && error.response.status === 403) {
         setErro("🎄 Ainda não é hora!");
       } else {
-        setErro("Erro desconhecido.");
+        setErro("Erro de conexão. O servidor pode estar dormindo, tente de novo em 1 min.");
       }
     } finally {
       setLoading(false);
@@ -66,7 +72,6 @@ const baseURL = window.location.hostname.includes('localhost')
             ))}
           </select>
           
-          {}
           <input 
             type="password" 
             placeholder="Sua Senha (PIN)"
