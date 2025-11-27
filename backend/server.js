@@ -33,26 +33,36 @@ app.get('/api/participantes', (req, res) => {
 });
 
 app.post('/api/revelar', (req, res) => {
+    console.log("--- NOVA TENTATIVA DE LOGIN ---"); 
+
     const { idSolicitante, senha } = req.body;
     const agora = new Date();
 
+    console.log("Tentando logar ID:", idSolicitante); 
+
     if (agora < DATA_REVELACAO) {
+        console.log("Bloqueado por data.");
         return res.status(403).json({ erro: "Ainda não é Natal! Aguarde." });
     }
 
     const pessoa = participantes.find(p => p.id === Number(idSolicitante));
     
     if (!pessoa) {
+        console.log("Pessoa não encontrada.");
         return res.status(404).json({ erro: "Pessoa não encontrada." });
     }
 
     const senhaDigitada = String(senha).trim();
     const senhaCorreta = String(pessoa.senha).trim();
 
+    console.log(`Comparando: [${senhaDigitada}] com [${senhaCorreta}]`);
+
     if (senhaDigitada !== senhaCorreta) {
+        console.log("Senha incorreta!");
         return res.status(401).json({ erro: "Senha incorreta! Tente novamente." });
     }
 
+    console.log("Sucesso! Revelando amigo.");
     res.json({ amigo: pessoa.amigo });
 });
 
