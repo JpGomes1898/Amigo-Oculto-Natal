@@ -18,7 +18,7 @@ function App() {
  
 const baseURL = window.location.hostname.includes('localhost') 
   ? 'http://localhost:3001' 
-  : 'https://amigo-secreto-api.onrender.com'; 
+  : 'hthttps://amigo-oculto-okwo.onrender.com'; 
 
   const handleRevelar = async () => {
     if (!selecionado) return alert("Selecione seu nome!");
