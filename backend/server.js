@@ -11,7 +11,7 @@ const DATA_REVELACAO = new Date(2025, 10, 1, 9, 0, 0);
 let participantes = [
     { id: 1,  nome: "Lúcia",      amigo: "Henrique",   senha: "107" },
     { id: 2,  nome: "Luiza",      amigo: "Beatriz",    senha: "715" },
-    { id: 3,  nome: "João",       amigo: "Flávia",     senha: "778" },
+    { id: 3,  nome: "João",       amigo: "Luiza",      senha: "778" },
     { id: 4,  nome: "Marquinhos", amigo: "Lara",       senha: "665" },
     { id: 5,  nome: "Lara",       amigo: "Junior",     senha: "409" },
     { id: 6,  nome: "Fernanda",   amigo: "Luiz",       senha: "222" },
@@ -22,7 +22,7 @@ let participantes = [
     { id: 11, nome: "Adriana",    amigo: "Anna",       senha: "428" },
     { id: 12, nome: "Luiz",       amigo: "Fernanda",   senha: "383" },
     { id: 13, nome: "Giovanna",   amigo: "Marina",     senha: "920" },
-    { id: 14, nome: "Marina",     amigo: "Luiza",      senha: "167" },
+    { id: 14, nome: "Marina",     amigo: "Flávia",     senha: "167" },
     { id: 15, nome: "Flávia",     amigo: "Marquinhos", senha: "711" },
     { id: 16, nome: "Henrique",   amigo: "Marcelo",    senha: "497" }, 
     { id: 17, nome: "Anna",       amigo: "Másio",      senha: "404" },
